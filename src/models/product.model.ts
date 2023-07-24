@@ -8,6 +8,8 @@ interface IProduct extends Document {
   updatedAt: Date;
 }
 
+export type ProductDocument = Pick<IProduct, "title" | "price" | "url">;
+
 const ProductSchema = new Schema<IProduct>(
   {
     title: { type: String, required: true },

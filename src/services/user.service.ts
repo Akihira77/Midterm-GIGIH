@@ -13,9 +13,19 @@ export const GetByName = async (name: string) => {
 };
 
 export const Create = async (data: UserDocument) => {
-  return await UserModel.create({ data });
+  return await UserModel.create(data);
 };
 
 export const Delete = async (id: string) => {
   return await UserModel.findByIdAndDelete(id);
+};
+
+export const Update = async (id: string, password: string) => {
+  return await UserModel.findByIdAndUpdate(
+    id,
+    {
+      $set: { password: password },
+    },
+    { returnDocument: "after" }
+  );
 };

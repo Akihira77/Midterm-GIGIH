@@ -8,6 +8,8 @@ interface IVideo extends Document {
   updatedAt: Date;
 }
 
+export type VideoDocument = Pick<IVideo, "productId" | "url">;
+
 const VideoSchema = new Schema<IVideo>(
   {
     productId: {

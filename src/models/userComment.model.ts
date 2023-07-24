@@ -9,6 +9,11 @@ interface IUserComment extends Document {
   updatedAt: Date;
 }
 
+export type UserCommentDocument = Pick<
+  IUserComment,
+  "username" | "productId" | "comment"
+>;
+
 const UserSchema = new Schema<IUserComment>(
   {
     username: { type: String, required: true },
