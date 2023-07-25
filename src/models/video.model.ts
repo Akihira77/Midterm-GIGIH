@@ -9,6 +9,7 @@ interface IVideo extends Document {
 }
 
 export type VideoDocument = Pick<IVideo, "productId" | "url">;
+export type VideoDTO = Pick<IVideo, "productId" | "url">;
 
 const VideoSchema = new Schema<IVideo>(
   {

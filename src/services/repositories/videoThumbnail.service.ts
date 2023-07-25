@@ -1,4 +1,4 @@
-import VideoThumbnailModel from "../models/videoThumbnail.model";
+import VideoThumbnailModel from "../../models/videoThumbnail.model";
 import { BaseService } from "./base.service";
 
 class VideoThumbnailService extends BaseService {

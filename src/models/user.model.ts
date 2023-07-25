@@ -8,6 +8,7 @@ interface IUser extends Document {
 }
 
 export type UserDocument = Pick<IUser, "username" | "password">;
+export type UserDTO = Pick<IUser, "username">;
 
 const UserSchema = new Schema<IUser>(
   {

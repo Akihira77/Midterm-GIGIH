@@ -1,5 +1,5 @@
-import { UserCommentDocument } from "./../models/userComment.model";
-import UserCommentModel from "../models/userComment.model";
+import { UserCommentDocument } from "../../models/userComment.model";
+import UserCommentModel from "../../models/userComment.model";
 import { BaseService } from "./base.service";
 
 class UserCommentService extends BaseService {

@@ -14,6 +14,11 @@ export type UserCommentDocument = Pick<
   "username" | "productId" | "comment"
 >;
 
+export type UserCommentDTO = Pick<
+  IUserComment,
+  "username" | "comment" | "createdAt" | "updatedAt"
+>;
+
 const UserCommentSchema = new Schema<IUserComment>(
   {
     username: { type: String, required: true },

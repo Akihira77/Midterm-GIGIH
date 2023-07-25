@@ -1,4 +1,4 @@
-import ProductModel from "../models/product.model";
+import ProductModel from "../../models/product.model";
 import { BaseService } from "./base.service";
 
 class ProductService extends BaseService {

@@ -3,16 +3,14 @@ import { Request, Response } from "express";
 import { isValidObjectId } from "mongoose";
 
 // Services
-import UserService from "../services/user.service";
+import UserService from "../services/repositories/user.service";
+import userMap from "../services/mapping/user.mapping";
 
 export const GetAll = async (req: Request, res: Response) => {
   try {
     const results = await UserService.GetAll();
-    const data = results.map((result) => {
-      return { username: result.username };
-    });
 
-    return res.status(200).send({ data: data });
+    return res.status(200).send({ data: await userMap(results) });
   } catch (error: unknown) {
     console.log(error);
     return res.status(400).send({ error });

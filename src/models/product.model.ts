@@ -9,6 +9,8 @@ interface IProduct extends Document {
 }
 
 export type ProductDocument = Pick<IProduct, "title" | "price" | "url">;
+export type ProductDTO = Pick<IProduct, "title" | "price" | "url">;
+export type VideoProductDTO = Pick<IProduct, "id" | "title" | "price" | "url">;
 
 const ProductSchema = new Schema<IProduct>(
   {

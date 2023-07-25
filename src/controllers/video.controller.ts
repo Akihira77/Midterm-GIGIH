@@ -1,12 +1,15 @@
 import { Request, Response } from "express";
 import { VideoDocument } from "../models/video.model";
-import VideoService from "../services/video.service";
-import VideoThumbnailService from "../services/videoThumbnail.service";
+import VideoService from "../services/repositories/video.service";
+import VideoThumbnailService from "../services/repositories/videoThumbnail.service";
+import { thumbnailMap, videoMap } from "../services/mapping/video.mapping";
+import { VideoThumbnailDTO } from "../models/videoThumbnail.model";
 
 export const GetAll = async (req: Request, res: Response) => {
   try {
     const results = await VideoService.GetAll();
-    return res.status(200).send({ data: results });
+
+    return res.status(200).send({ data: await videoMap(results) });
   } catch (error) {
     console.log(error);
     return res.status(400).send({ error });
@@ -31,11 +34,8 @@ export const Create = async (
 export const GetAllThumbnail = async (req: Request, res: Response) => {
   try {
     const thumbnails = await VideoThumbnailService.GetAll();
-    const result = thumbnails.map((thumbnail) => {
-      return { videoId: thumbnail.videoId, urlImage: thumbnail.urlImage };
-    });
 
-    return res.status(200).send({ data: result });
+    return res.status(200).send({ data: await thumbnailMap(thumbnails) });
   } catch (error) {
     console.log(error);
     return res.status(400).send({ error });
@@ -80,7 +80,13 @@ export const GetThumbnailFromVideo = async (
     const thumbnails = await VideoThumbnailService.GetByVideoId(
       req.params.videoId
     );
-    return res.status(200).send({ data: thumbnails });
+
+    const result: VideoThumbnailDTO = {
+      videoId: thumbnails.videoId,
+      urlImage: thumbnails.urlImage,
+    };
+
+    return res.status(200).send({ data: result });
   } catch (error) {
     console.log(error);
     return res.status(400).send({ error });

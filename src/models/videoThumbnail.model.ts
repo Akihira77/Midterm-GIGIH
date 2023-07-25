@@ -13,6 +13,8 @@ export type VideoThumbnailDocument = Pick<
   "videoId" | "urlImage"
 >;
 
+export type VideoThumbnailDTO = Pick<IVideoThumbnail, "videoId" | "urlImage">;
+
 const VideoThumbnailSchema = new Schema<IVideoThumbnail>({
   videoId: { type: Schema.Types.ObjectId, required: true, ref: VideoModel },
   urlImage: [{ type: String, required: true }],

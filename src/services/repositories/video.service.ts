@@ -1,4 +1,4 @@
-import VideoModel from "../models/video.model";
+import VideoModel from "../../models/video.model";
 import { BaseService } from "./base.service";
 
 class VideoService extends BaseService {}

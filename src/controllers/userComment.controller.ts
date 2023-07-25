@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
-import VideoService from "../services/video.service";
-import UserCommentService from "../services/userComment.service";
-import UserService from "../services/user.service";
+import VideoService from "../services/repositories/video.service";
+import UserCommentService from "../services/repositories/userComment.service";
+import UserService from "../services/repositories/user.service";
+import commentMapping from "../services/mapping/comment.mapping";
 
 export const SubmitComment = async (
   req: Request<{ videoId: string }, {}, { username: string; comment: string }>,
@@ -45,16 +46,8 @@ export const GetAllByVideoId = async (
     const comments = await UserCommentService.GetAllByProductId(
       video.productId
     );
-    const result = comments.map((comment) => {
-      return {
-        username: comment.username,
-        comment: comment.comment,
-        createdAt: comment.createdAt,
-        updatedAt: comment.updatedAt,
-      };
-    });
 
-    return res.status(200).send({ data: result });
+    return res.status(200).send({ data: await commentMapping(comments) });
   } catch (error) {
     console.log(error);
     return res.status(400).send({ error });
