@@ -1,7 +1,9 @@
 import { UserDocument } from "./../models/user.model";
 import { Request, Response } from "express";
-import * as UserService from "../services/user.service";
 import { isValidObjectId } from "mongoose";
+
+// Services
+import UserService from "../services/user.service";
 
 export const GetAll = async (req: Request, res: Response) => {
   try {
@@ -45,7 +47,7 @@ export const Create = async (
       return res.status(400).send({ message: "User is already exists" });
     }
 
-    const user = await UserService.Create({ ...req.body });
+    const user = await UserService.Create(req.body);
     await user.save();
 
     return res.status(201).send({ data: user });

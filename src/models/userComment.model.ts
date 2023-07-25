@@ -14,7 +14,7 @@ export type UserCommentDocument = Pick<
   "username" | "productId" | "comment"
 >;
 
-const UserSchema = new Schema<IUserComment>(
+const UserCommentSchema = new Schema<IUserComment>(
   {
     username: { type: String, required: true },
     productId: {
@@ -29,6 +29,6 @@ const UserSchema = new Schema<IUserComment>(
   }
 );
 
-const UserModel = model<IUserComment>("User", UserSchema);
+const UserCommentModel = model<IUserComment>("UserComment", UserCommentSchema);
 
-export default UserModel;
+export default UserCommentModel;

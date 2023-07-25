@@ -1,31 +1,20 @@
-import UserModel, { UserDocument } from "../models/user.model";
+import UserModel from "../models/user.model";
+import { BaseService } from "./base.service";
 
-export const GetAll = async () => {
-  return await UserModel.find();
-};
+class UserService extends BaseService {
+  GetByName = async (name: string) => {
+    return await this._model.findOne({ username: name });
+  };
 
-export const GetById = async (id: string) => {
-  return await UserModel.findById(id);
-};
+  Update = async (id: string, password: string) => {
+    return await this._model.findByIdAndUpdate(
+      id,
+      {
+        $set: { password: password },
+      },
+      { returnDocument: "after" }
+    );
+  };
+}
 
-export const GetByName = async (name: string) => {
-  return await UserModel.findOne({ username: name });
-};
-
-export const Create = async (data: UserDocument) => {
-  return await UserModel.create(data);
-};
-
-export const Delete = async (id: string) => {
-  return await UserModel.findByIdAndDelete(id);
-};
-
-export const Update = async (id: string, password: string) => {
-  return await UserModel.findByIdAndUpdate(
-    id,
-    {
-      $set: { password: password },
-    },
-    { returnDocument: "after" }
-  );
-};
+export default new UserService(UserModel);

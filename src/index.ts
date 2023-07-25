@@ -8,6 +8,9 @@ dotnev.config();
 
 // Import Routes
 import UserRoutes from "./routers/user.routes";
+import ProductRoutes from "./routers/product.routes";
+import UserCommentRoutes from "./routers/userComment.routes";
+import VideoRoutes from "./routers/video.routes";
 
 const app: Application = express();
 
@@ -31,6 +34,9 @@ const StartServer = () => {
 
   // Routes
   app.use("/api/users", UserRoutes);
+  app.use("/api/products", ProductRoutes);
+  app.use("/api/user-comment", UserCommentRoutes);
+  app.use("/api/videos", VideoRoutes);
 
   app.listen(process.env.SERVER_PORT, () => {
     console.log(`Server is running on port ${process.env.SERVER_PORT}`);
