@@ -1,11 +1,7 @@
 import { Model } from "mongoose";
 
 export class BaseService {
-  protected readonly _model;
-
-  constructor(model: typeof Model) {
-    this._model = model;
-  }
+  constructor(protected readonly _model: typeof Model) {}
 
   GetAll = async (populate?: string) => {
     return await this._model.find().populate(populate || []);

@@ -10,7 +10,6 @@ ProductRoutes.get(
   "/get-product-list-by-videoId/:videoId",
   ProductController.GetAllByVideoId
 );
-
 ProductRoutes.post("/", ProductController.Create);
 
 export default ProductRoutes;

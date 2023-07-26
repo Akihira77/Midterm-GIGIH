@@ -11,4 +11,10 @@ UserRoutes.post("/", UserController.Create);
 UserRoutes.delete("/:id", UserController.Delete);
 UserRoutes.put("/:id", UserController.Update);
 
+UserRoutes.get(
+  "/get-comment-from-video/:videoId",
+  UserController.GetAllByVideoId
+);
+UserRoutes.post("/submit-comment/:videoId", UserController.SubmitComment);
+
 export default UserRoutes;

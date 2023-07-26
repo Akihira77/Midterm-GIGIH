@@ -9,8 +9,14 @@ dotnev.config();
 // Import Routes
 import UserRoutes from "./routers/user.routes";
 import ProductRoutes from "./routers/product.routes";
-import UserCommentRoutes from "./routers/userComment.routes";
 import VideoRoutes from "./routers/video.routes";
+import {
+  SeedDataComment,
+  SeedDataProduct,
+  SeedDataThumbnail,
+  SeedDataUser,
+  SeedDataVideo,
+} from "./seed";
 
 const app: Application = express();
 
@@ -32,10 +38,20 @@ const StartServer = () => {
   app.use(compression());
   app.use(morgan("dev"));
 
+  // Seeding data
+  app.get("/seed-data", async (req, res) => {
+    await SeedDataUser();
+    await SeedDataProduct();
+    await SeedDataVideo();
+    await SeedDataThumbnail();
+    await SeedDataComment();
+
+    return res.status(201).send({ message: "Seeding data is success" });
+  });
+
   // Routes
   app.use("/api/users", UserRoutes);
   app.use("/api/products", ProductRoutes);
-  app.use("/api/user-comment", UserCommentRoutes);
   app.use("/api/videos", VideoRoutes);
 
   app.listen(process.env.SERVER_PORT, () => {
