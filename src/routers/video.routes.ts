@@ -1,15 +1,21 @@
 import express, { Router } from "express";
 import * as VideoController from "../controllers/video.controller";
+import validatorObjectId from "../middleware/validatorObjectId.middleware";
 
 const VideoRoutes: Router = express();
 
 VideoRoutes.get("/", VideoController.GetAll);
-VideoRoutes.get("/get-thumbnail-list", VideoController.GetAllThumbnail);
+VideoRoutes.get("/thumbnails", VideoController.GetAllThumbnail);
 VideoRoutes.get(
-  "/get-thumbnail-from-video/:videoId",
+  "/thumbnails/:videoId",
+  validatorObjectId("videoId"),
   VideoController.GetThumbnailFromVideo
 );
 VideoRoutes.post("/", VideoController.Create);
-VideoRoutes.post("/add-thumbnail/:videoId", VideoController.AddThumbnail);
+VideoRoutes.post(
+  "/thumbnails/:videoId",
+  validatorObjectId("videoId"),
+  VideoController.AddThumbnail
+);
 
 export default VideoRoutes;

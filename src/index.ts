@@ -39,7 +39,7 @@ const StartServer = () => {
   app.use(morgan("dev"));
 
   // Seeding data
-  app.get("/seed-data", async (req, res) => {
+  app.post("/api/seed-data", async (req, res) => {
     await SeedDataUser();
     await SeedDataProduct();
     await SeedDataVideo();

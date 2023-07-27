@@ -13,7 +13,9 @@ export const GetAll = async (req: Request, res: Response) => {
   try {
     const results = await ProductService.GetAll();
 
-    return res.status(200).send({ data: await productMap(results) });
+    return res
+      .status(200)
+      .send({ data: { products: await productMap(results) } });
   } catch (error) {
     console.log(error);
     return res.status(400).send({ error });
@@ -28,7 +30,7 @@ export const Create = async (
     const result = await ProductService.Create(req.body);
 
     await result.save();
-    return res.status(201).send({ data: result });
+    return res.status(201).send({ data: { product: result } });
   } catch (error) {
     console.log(error);
     return res.status(400).send({ error });
@@ -42,12 +44,14 @@ export const GetAllByVideoId = async (
   try {
     const video = await VideoService.GetById(req.params.videoId);
     if (video == null) {
-      return res.status(404).send({ message: "Video id is not valid" });
+      return res.status(404).send({ message: "Video does not exists" });
     }
 
     const products = await ProductService.GetAllById(video.productId);
 
-    return res.status(200).send({ data: await videoProductMap(products) });
+    return res
+      .status(200)
+      .send({ data: { products: await videoProductMap(products) } });
   } catch (error) {
     console.log(error);
     return res.status(400).send({ error });
