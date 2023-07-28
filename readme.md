@@ -50,7 +50,9 @@
 # How To Run
 
 Import `Midterm - GIGIH.postman_collection.json` to your postman, insomnia, etc...  
-After that do the seeding data first and you can try all endpoint = `{{api_url}}` + /endpoint
+After that do the seeding data first and use `{{api_url}}` + /endpoint for every request in postman
+
+you also need to open the MongooDB Compass or MongoDB extension in VSCode to use the `_id` for some object to work with the endpoint like `{ :id, :videoId }`
 
 in `.env` file there is a server port and mongo uri
 
