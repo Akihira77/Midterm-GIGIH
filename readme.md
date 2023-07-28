@@ -1,3 +1,69 @@
+# Folder Structure
+
+```md
+📂node_modules
+📦src
+┣ 📂controllers
+┃ ┣ 📜product.controller.ts
+┃ ┣ 📜user.controller.ts
+┃ ┗ 📜video.controller.ts
+┣ 📂middleware
+┃ ┗ 📜validatorObjectId.middleware.ts
+┣ 📂models
+┃ ┣ 📜product.model.ts
+┃ ┣ 📜user.model.ts
+┃ ┣ 📜userComment.model.ts
+┃ ┣ 📜video.model.ts
+┃ ┗ 📜videoThumbnail.model.ts
+┣ 📂routers
+┃ ┣ 📜product.routes.ts
+┃ ┣ 📜user.routes.ts
+┃ ┗ 📜video.routes.ts
+┣ 📂services
+┃ ┣ 📂mapping
+┃ ┃ ┣ 📜comment.mapping.ts
+┃ ┃ ┣ 📜product.mapping.ts
+┃ ┃ ┣ 📜user.mapping.ts
+┃ ┃ ┗ 📜video.mapping.ts
+┃ ┗ 📂repositories
+┃ ┃ ┣ 📜base.service.ts
+┃ ┃ ┣ 📜product.service.ts
+┃ ┃ ┣ 📜user.service.ts
+┃ ┃ ┣ 📜userComment.service.ts
+┃ ┃ ┣ 📜video.service.ts
+┃ ┃ ┗ 📜videoThumbnail.service.ts
+┣ 📜index.ts
+┗ 📜seed.ts
+📜.env
+📜.gitignore
+📜package-lock.json
+📜package.json
+📜readme.md
+📜tsconfig.json
+```
+
+# The Flow
+
+`Request -> Routes -> Controller -> Service -> Model/Data Access`
+
+# Seeding Data
+
+**POST /api/seed-data**
+
+---
+
+Seeding data for User, Product, Video, User Comment, Video Thumbnail.
+
+- **URL Params**  
+  None
+- **Data Params**  
+  None
+- **Headers**  
+  Content-Type: application/json
+- **Success Response:**
+  - **Code:** 201  
+    **Content:** `{ message: "Seeding data is success" }`
+
 # Users
 
 - User Object
@@ -41,7 +107,7 @@
 }
 ```
 
-**GET /users**
+**GET /api/users**
 
 ---
 
@@ -73,7 +139,7 @@ Returns all users in the system.
   - **Code:** 400  
     **Content:** `{ message: "Something has happened", error: error }`
 
-**GET /users/:id**
+**GET /api/users/:id**
 
 ---
 
@@ -95,7 +161,7 @@ Returns the specified user.
   - **Code:** 400  
     **Content:** `{ message: "Something has happened", error: error }`
 
-**POST /users**
+**POST /api/users**
 
 ---
 
@@ -126,7 +192,7 @@ Createss a new User and returns the new object.
   - **Code:** 400  
     **Content:** `{ message: "Something has happened", error: error }`
 
-**DELETE /users/:id**
+**DELETE /api/users/:id**
 
 ---
 
@@ -148,7 +214,7 @@ Delete the specified user.
   - **Code:** 400  
     **Content:** `{ message: "Something has happened", error: error }`
 
-**PUT /users/:id**
+**PUT /api/users/:id**
 
 ---
 
@@ -186,7 +252,7 @@ Update the specified user.
   - **Code:** 400  
     **Content:** `{ message: "Something has happened", error: error }`
 
-**GET /users/comments/get-all**
+**GET /api/users/comments/get-all**
 
 ---
 
@@ -218,7 +284,7 @@ Returns all users comment in the system.
   - **Code:** 400  
     **Content:** `{ message: "Something has happened", error: error }`
 
-**GET /users/comments/get-comment-from-video/:videoId**
+**GET /api/users/comments/get-comment-from-video/:videoId**
 
 ---
 
@@ -253,7 +319,7 @@ returns users comment from the specified video.
   - **Code:** 400  
     **Content:** `{ message: "Something has happened", error: error }`
 
-**POST /users/comments/submit-comment/:videoId**
+**POST /api/users/comments/submit-comment/:videoId**
 
 ---
 
@@ -320,7 +386,7 @@ Creates new user comment from a video and returns the new object.
 }
 ```
 
-## **GET /products**
+## **GET /api/products**
 
 Returns all products in the system
 
@@ -350,7 +416,7 @@ Returns all products in the system
   - **Code:** 400  
     **Content:** `{ message: "Something has happened", error: error }`
 
-## **GET /products/get-product-list-by-videoId/:videoId**
+## **GET /api/products/get-product-list-by-videoId/:videoId**
 
 Returns all products for the specified video
 
@@ -383,7 +449,7 @@ Returns all products for the specified video
   - **Code:** 404  
     **Content:** `{message: "Video does not exists" }`
 
-## **POST /products**
+## **POST /api/products**
 
 Creates a new product and returns then new object
 
@@ -464,7 +530,7 @@ Creates a new product and returns then new object
 }
 ```
 
-## **GET /videos**
+## **GET /api/videos**
 
 Returns all videos in the system
 
@@ -494,7 +560,7 @@ Returns all videos in the system
   - **Code:** 400  
     **Content:** `{ message: "Something has happened", error : error }`
 
-## **GET /videos/thumbnails**
+## **GET /api/videos/thumbnails**
 
 Returns all thumbnail images from videos in the system
 
@@ -524,7 +590,7 @@ Returns all thumbnail images from videos in the system
   - **Code:** 400  
     **Content:** `{ message: "Something has happened", error : error }`
 
-## **GET /videos/thumbnails/:videoId**
+## **GET /api/videos/thumbnails/:videoId**
 
 Returns all thumbnail images from the specified video in the system
 
@@ -555,7 +621,7 @@ Returns all thumbnail images from the specified video in the system
   - **Code:** 404  
     **Content:** `{ message: "Video does not exists" }`
 
-## **POST /videos**
+## **POST /api/videos**
 
 Creates a new Video and returns the new object.
 
@@ -586,7 +652,7 @@ Creates a new Video and returns the new object.
 }
 ```
 
-## **POST /videos/thumbnails/:videoId**
+## **POST /api/videos/thumbnails/:videoId**
 
 Creates a new thumbnail image for the specified Video
 if the Video Thumbnail object for the specified Video already exists then add the thumbnail images in _urlImage_ array
