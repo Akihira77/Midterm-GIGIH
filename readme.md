@@ -36,6 +36,7 @@
 ┗ 📜seed.ts
 📜.env
 📜.gitignore
+📜Midterm - GIGIH.postman_collection.json
 📜package-lock.json
 📜package.json
 📜readme.md
@@ -46,9 +47,16 @@
 
 `Request -> Routes -> Controller -> Service -> Model/Data Access`
 
+# How To Run
+
+Import `Midterm - GIGIH.postman_collection.json` to your postman, insomnia, etc...  
+After that do the seeding data first and you can try all endpoint = `{{api_url}}` + /endpoint
+
+in `.env` file there is a server port and mongo uri
+
 # Seeding Data
 
-**POST /api/seed-data**
+**POST /seed-data**
 
 ---
 
@@ -107,7 +115,7 @@ Seeding data for User, Product, Video, User Comment, Video Thumbnail.
 }
 ```
 
-**GET /api/users**
+**GET /users**
 
 ---
 
@@ -139,7 +147,7 @@ Returns all users in the system.
   - **Code:** 400  
     **Content:** `{ message: "Something has happened", error: error }`
 
-**GET /api/users/:id**
+**GET /users/:id**
 
 ---
 
@@ -161,7 +169,7 @@ Returns the specified user.
   - **Code:** 400  
     **Content:** `{ message: "Something has happened", error: error }`
 
-**POST /api/users**
+**POST /users**
 
 ---
 
@@ -192,7 +200,7 @@ Createss a new User and returns the new object.
   - **Code:** 400  
     **Content:** `{ message: "Something has happened", error: error }`
 
-**DELETE /api/users/:id**
+**DELETE /users/:id**
 
 ---
 
@@ -214,7 +222,7 @@ Delete the specified user.
   - **Code:** 400  
     **Content:** `{ message: "Something has happened", error: error }`
 
-**PUT /api/users/:id**
+**PUT /users/:id**
 
 ---
 
@@ -252,7 +260,7 @@ Update the specified user.
   - **Code:** 400  
     **Content:** `{ message: "Something has happened", error: error }`
 
-**GET /api/users/comments/get-all**
+**GET /users/comments/get-all**
 
 ---
 
@@ -284,7 +292,7 @@ Returns all users comment in the system.
   - **Code:** 400  
     **Content:** `{ message: "Something has happened", error: error }`
 
-**GET /api/users/comments/get-comment-from-video/:videoId**
+**GET /users/comments/get-comment-from-video/:videoId**
 
 ---
 
@@ -319,7 +327,7 @@ returns users comment from the specified video.
   - **Code:** 400  
     **Content:** `{ message: "Something has happened", error: error }`
 
-**POST /api/users/comments/submit-comment/:videoId**
+**POST /users/comments/submit-comment/:videoId**
 
 ---
 
@@ -386,7 +394,7 @@ Creates new user comment from a video and returns the new object.
 }
 ```
 
-## **GET /api/products**
+## **GET /products**
 
 Returns all products in the system
 
@@ -416,7 +424,7 @@ Returns all products in the system
   - **Code:** 400  
     **Content:** `{ message: "Something has happened", error: error }`
 
-## **GET /api/products/get-product-list-by-videoId/:videoId**
+## **GET /products/get-product-list-by-videoId/:videoId**
 
 Returns all products for the specified video
 
@@ -449,7 +457,7 @@ Returns all products for the specified video
   - **Code:** 404  
     **Content:** `{message: "Video does not exists" }`
 
-## **POST /api/products**
+## **POST /products**
 
 Creates a new product and returns then new object
 
@@ -530,7 +538,7 @@ Creates a new product and returns then new object
 }
 ```
 
-## **GET /api/videos**
+## **GET /videos**
 
 Returns all videos in the system
 
@@ -560,7 +568,7 @@ Returns all videos in the system
   - **Code:** 400  
     **Content:** `{ message: "Something has happened", error : error }`
 
-## **GET /api/videos/thumbnails**
+## **GET /videos/thumbnails**
 
 Returns all thumbnail images from videos in the system
 
@@ -590,7 +598,7 @@ Returns all thumbnail images from videos in the system
   - **Code:** 400  
     **Content:** `{ message: "Something has happened", error : error }`
 
-## **GET /api/videos/thumbnails/:videoId**
+## **GET /videos/thumbnails/:videoId**
 
 Returns all thumbnail images from the specified video in the system
 
@@ -621,7 +629,7 @@ Returns all thumbnail images from the specified video in the system
   - **Code:** 404  
     **Content:** `{ message: "Video does not exists" }`
 
-## **POST /api/videos**
+## **POST /videos**
 
 Creates a new Video and returns the new object.
 
@@ -652,7 +660,7 @@ Creates a new Video and returns the new object.
 }
 ```
 
-## **POST /api/videos/thumbnails/:videoId**
+## **POST /videos/thumbnails/:videoId**
 
 Creates a new thumbnail image for the specified Video
 if the Video Thumbnail object for the specified Video already exists then add the thumbnail images in _urlImage_ array
