@@ -56,6 +56,12 @@ you also need to open the MongooDB Compass or MongoDB extension in VSCode to use
 
 in `.env` file there is a server port and mongo uri
 
+int the command prompt run
+
+```cli
+npm run start
+```
+
 # Seeding Data
 
 **POST /seed-data**
