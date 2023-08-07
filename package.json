@@ -5,6 +5,8 @@
   "main": "index.ts",
   "scripts": {
     "start": "ts-node ./src/index.ts",
+    "publish": "node ./dist/index.js",
+    "dev": "cd src && tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
