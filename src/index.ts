@@ -21,7 +21,7 @@ import {
 const app: Application = express();
 
 mongoose
-  .connect(process.env.MONGO_URI as string)
+  .connect(process.env.MONGO_URI || "mongodb://127.0.0.1:27017/MidtermGIGIH")
   .then(() => {
     console.log("Db Connected");
     StartServer();
@@ -54,8 +54,8 @@ const StartServer = () => {
   app.use("/api/products", ProductRoutes);
   app.use("/api/videos", VideoRoutes);
 
-  const PORT = Number(process.env.SERVER_PORT) || 1337;
-  app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Server is running on port ${process.env.SERVER_PORT}`);
+  const PORT = process.env.SERVER_PORT || 1337;
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
   });
 };
