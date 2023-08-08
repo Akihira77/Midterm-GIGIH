@@ -54,8 +54,8 @@ const StartServer = () => {
   app.use("/api/products", ProductRoutes);
   app.use("/api/videos", VideoRoutes);
 
-  const PORT = process.env.SERVER_PORT;
-  app.listen(PORT, () => {
+  const PORT = Number(process.env.SERVER_PORT);
+  app.listen(PORT, "0.0.0.0", () => {
     console.log(`Server is running on port ${PORT}`);
   });
 };
