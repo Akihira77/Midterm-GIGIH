@@ -25,7 +25,7 @@ const video_routes_1 = __importDefault(require("./routers/video.routes"));
 const seed_1 = require("./seed");
 const app = (0, express_1.default)();
 mongoose_1.default
-    .connect(process.env.MONGO_URI || "mongodb://127.0.0.1:27017/MidtermGIGIH")
+    .connect(process.env.MONGO_URI)
     .then(() => {
     console.log("Db Connected");
     StartServer();
@@ -50,8 +50,9 @@ const StartServer = () => {
     app.use("/api/users", user_routes_1.default);
     app.use("/api/products", product_routes_1.default);
     app.use("/api/videos", video_routes_1.default);
-    const PORT = process.env.SERVER_PORT || 1337;
-    app.listen(PORT, () => {
+    app.get("/", (req, res) => res.send("Hello world"));
+    const PORT = Number(process.env.SERVER_PORT);
+    app.listen(PORT, "0.0.0.0", () => {
         console.log(`Server is running on port ${PORT}`);
     });
 };
