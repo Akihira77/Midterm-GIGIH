@@ -34,9 +34,9 @@ const StartServer = () => {
   // Midlleware
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
-  app.use(cors());
+  // app.use(cors());
   app.use(compression());
-  app.use(morgan("dev"));
+  // app.use(morgan("dev"));
 
   // Seeding data
   app.post("/api/seed-data", async (req, res) => {
